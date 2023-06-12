@@ -7,12 +7,10 @@ function getComputerChoice() {
 console.log(getComputerChoice());
 
 function playRound(playerSelection, computerSelection) {
-  return (
-    "You Lose! Paper beats Rock",
-    "You win Rock beats Scissors",
-    "You lose! Scissors beat Paper"
-  );
+  return "You Lose! Paper beats Rock";
 }
+
+function game() {}
 
 const playerSelection = "rock";
 const computerSelection = getComputerChoice();
