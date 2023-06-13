@@ -1,15 +1,22 @@
+const choices = ["rock", "paper", "scissors"];
+const randomInt = Math.floor(Math.random() * 3);
 function getComputerChoice() {
-  const choices = ["rock", "paper", "scissors"];
-  const randomInt = Math.floor(Math.random() * 3);
   return choices[randomInt];
 }
 
 console.log(getComputerChoice());
 
 function playRound(playerSelection, computerSelection) {
-  return "You Lose! Paper beats Rock";
+  if (choices["rock"] === playerSelection) {
+    return "It's a draw!";
+  } else if (choices["paper"] !== playerSelection) {
+    return "You lose";
+  } else if (choices["scissors"] !== playerSelection) {
+    return "you win";
+  }
+  playerSelection.toLowerCase === "rock";
+  return computerSelection;
 }
-
 function game() {}
 
 const playerSelection = "rock";
