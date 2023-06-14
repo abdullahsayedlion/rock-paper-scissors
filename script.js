@@ -17,7 +17,6 @@ function playRound(playerSelection, computerSelection) {
   playerSelection.toLowerCase === "rock";
   return computerSelection;
 }
-function game() {}
 
 const playerSelection = "rock";
 const computerSelection = getComputerChoice();
