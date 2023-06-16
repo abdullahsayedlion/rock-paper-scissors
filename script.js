@@ -14,7 +14,7 @@ function playRound(playerSelection, computerSelection) {
   } else if (choices["scissors"] !== playerSelection) {
     return "you win";
   }
-  playerSelection.toLowerCase === "rock";
+  playerSelection = playerSelection.toLowerCase();
   return computerSelection;
 }
 
