@@ -1,46 +1,45 @@
-const choices = ["rock", "paper", "scissors"];
-const randomInt = Math.floor(Math.random() * 3);
+let playerScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
-  return choices[randomInt];
+  const choices = ["rock", "paper", "scissors"];
+  return choices[Math.floor(Math.random() * 3)];
 }
+//console.log(getComputerChoice());
 
-console.log(getComputerChoice());
-
-function playRound(playerSelection, computerSelection) {
-  playerSelection.toLowerCase();
-  computerSelection.toLowerCase();
-  if (playerSelection === computerSelection) {
-    return "It's a draw";
-  } else if (
-    (playerSelection === "rock" && computerSelection === "scissors") ||
-    (playerSelection === "paper" && computerSelection === "rock") ||
-    (playerSelection === "scissors" && computerSelection === "paper")
-  ) {
-    return "You win!";
+function playRound() {
+  const playerChoice = prompt("Enter your choice").toLowerCase();
+  const computerChoice = getComputerChoice();
+  // draw
+  if (playerChoice === computerChoice) {
+    console.log("It's a draw!");
+  }
+  // player wins
+  else if (playerChoice === "rock" && computerChoice === "scissors") {
+    console.log("You Win");
+    playerScore++;
+  } else if (playerChoice === "paper" && computerChoice === "rock") {
+    console.log("You Win");
+    playerScore++;
+  } else if (playerChoice === "scissors" && computerChoice === "paper") {
+    console.log("You Win");
+    playerScore++;
+    // computers
   } else {
-    return "You lose!";
+    console.log("You Lose");
+    computerScore++;
   }
 }
 
 function game() {
-  for (let i = 0; i < 5; i++) {
-    prompt("Enter your choice (rock, paper, or scissors)");
-  }
-
-  if (playerSelection === computerSelection) {
-    return "It's a draw";
-  } else if (
-    (playerSelection === "rock" && computerSelection === "scissors") ||
-    (playerSelection === "paper" && computerSelection === "rock") ||
-    (playerSelection === "scissors" && computerSelection === "paper")
-  ) {
-    return "You win!";
-  } else {
-    return "You lose!";
-  }
+  playRound();
+  playRound();
+  playRound();
+  playRound();
+  playRound();
+  console.log(
+    `Player Wins ${playerScore} times and Computer Wins ${computerScore} times`
+  );
 }
 
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
 game();
