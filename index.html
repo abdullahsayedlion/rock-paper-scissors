@@ -1,1 +1,57 @@
-
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Rock, Paper, Scissors</title>
+    <link rel="stylesheet" href="styles.css" type="text/css" media="all" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row player-one">
+        <input type="text" placeholder="Player One: Enter your name." />
+        <div class="messages">
+          <p class="valid-message player-one">Valid: Click Next To Continue</p>
+          <p class="invalid-message player-one">
+            Invalid: 5 Or More Characters Needed To Continue
+          </p>
+        </div>
+        <button class="next">Next</button>
+      </div>
+      <div class="row player-two">
+        <input type="text" placeholder="Player Two: Enter your name." />
+        <div class="messages">
+          <p class="valid-message">Valid: Click Next To Continue</p>
+          <p class="invalid-message">
+            Invalid: 5 Or More Characters Needed To Continue
+          </p>
+        </div>
+        <button class="next">Next</button>
+      </div>
+      <div class="row game-board">
+        <div class="board player-one">
+          <h2 class="name">Player One Name</h2>
+          <span class="score">Score: 0</span>
+          <div class="row game-buttons">
+            <button class="game-button rock">Rock</button>
+            <button class="game-button paper">Paper</button>
+            <button class="game-button scissors">Scissors</button>
+          </div>
+        </div>
+        <div class="board player-two">
+          <h2 class="name">Player Two Name</h2>
+          <span class="score">Score: 0</span>
+          <div class="row game-buttons">
+            <button class="game-button rock">Rock</button>
+            <button class="game-button paper">Paper</button>
+            <button class="game-button scissors">Scissors</button>
+          </div>
+        </div>
+      </div>
+      <div class="row reset">
+        <button class="reset button">Reset</button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

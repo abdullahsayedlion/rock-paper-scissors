@@ -1,1 +1,177 @@
+* {
+  box-sizing: border-box;
+}
 
+.container,
+.row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.player-one input {
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: blue;
+  border-color: blue;
+  font-size: 20px;
+  padding: 20px;
+  width: 350px;
+}
+
+.player-two input {
+  border-radius: 5px;
+  background-color: red;
+  border-color: red;
+  font-size: 20px;
+  padding: 20px;
+  width: 350px;
+  display: none;
+}
+
+.row.player-one .next {
+  border-radius: 5px;
+  color: white;
+  background-color: green;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.player-one .score {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.player-two .score {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.row.player-two .next {
+  border-radius: 5px;
+  color: white;
+  background-color: green;
+  padding: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+}
+
+.game-board .player-one {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  border: 1px solid;
+  padding: 50px;
+  border-radius: 5px;
+  border-color: blue;
+  background-color: blue;
+  text-align: center;
+  display: none;
+}
+
+.game-board .player-two {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  border: 1px solid;
+  padding: 50px;
+  border-radius: 5px;
+  border-color: red;
+  background-color: red;
+  text-align: center;
+  display: none;
+}
+
+.row .game-buttons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.row .game-buttons button {
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 20px;
+  border-color: white;
+  cursor: pointer;
+}
+
+.row .reset {
+  border-radius: 5px;
+  background-color: green;
+  padding: 20px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+.next,
+.reset,
+.game-buttons button {
+  width: 114px;
+  height: 70px;
+}
+
+h2 {
+  color: white;
+  font-family: sans-serif;
+}
+
+span {
+  color: white;
+}
+
+.row.player-one input::placeholder,
+.row.player-two input::placeholder {
+  color: white;
+  opacity: 0.8;
+}
+
+.row.game-board {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.player-one .valid-message {
+  color: green;
+  font-family: sans-serif;
+  display: none;
+}
+
+.player-one .invalid-message {
+  color: red;
+  font-family: sans-serif;
+  display: none;
+}
+
+.player-two .valid-message {
+  color: green;
+  font-family: sans-serif;
+  display: none;
+}
+
+.player-two .invalid-message {
+  color: red;
+  font-family: sans-serif;
+  display: none;
+}
+
+.row.player-two .messages {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.row.player-one .next[disabled],
+.row.player-two .next[disabled] {
+  opacity: 0.5;
+}
