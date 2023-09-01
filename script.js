@@ -22,12 +22,107 @@ document.addEventListener("DOMContentLoaded", () => {
   const playerOneOriginalPlaceholder = playerOneInput.placeholder;
   const playerTwoOriginalPlaceholder = playerTwoInput.placeholder;
   const gameButtons = document.querySelectorAll(".game-button");
+  let playerOneSelectedButton = null;
+  let playerTwoSelectedButton = null;
+  let playerOneScore = 0;
+  let playerTwoScore = 0;
+
+  function enableButtons(buttons) {
+    buttons.forEach((button) => {
+      button.disabled = false;
+    });
+  }
+
+  function disableButtons(buttons) {
+    buttons.forEach((button) => {
+      button.disabled = true;
+    });
+  }
+
+  function determineWinner(playerOneChoice, playerTwoChoice) {
+    if (
+      (playerOneChoice === "rock" && playerTwoChoice === "scissors") ||
+      (playerOneChoice === "scissors" && playerTwoChoice === "paper") ||
+      (playerOneChoice === "paper" && playerTwoChoice === "rock")
+    ) {
+      return "playerOne";
+    } else if (playerOneChoice === playerTwoChoice) {
+      return "tie";
+    } else {
+      return "playerTwo";
+    }
+  }
+
+  function updateScores() {
+    const playerOneScoreElement = document.querySelector(
+      ".board.player-one .score"
+    );
+    const playerTwoScoreElement = document.querySelector(
+      ".board.player-two .score"
+    );
+
+    playerOneScoreElement.textContent = `Score: ${playerOneScore}`;
+    playerTwoScoreElement.textContent = `Score: ${playerTwoScore}`;
+  }
 
   gameButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      button.style.backgroundColor = "green";
-      button.style.color = "white";
-      button.style.borderColor = "green";
+      if (playerOneBoard.classList.contains("faded")) {
+        button.style.backgroundColor = "green";
+        button.style.color = "white";
+        button.style.borderColor = "green";
+        if (playerTwoSelectedButton !== button) {
+          if (playerTwoSelectedButton) {
+            playerTwoSelectedButton.style.backgroundColor = "";
+            playerTwoSelectedButton.style.color = "";
+            playerTwoSelectedButton.style.borderColor = "";
+          }
+          button.style.backgroundColor = "green";
+          button.style.color = "white";
+          button.style.borderColor = "green";
+          playerTwoSelectedButton = button;
+        } else {
+          button.style.backgroundColor = "";
+          button.style.color = "";
+          button.style.borderColor = "";
+          playerTwoSelectedButton = null;
+        }
+      } else {
+        if (playerOneSelectedButton !== button) {
+          if (playerOneSelectedButton) {
+            playerOneSelectedButton.style.backgroundColor = "";
+            playerOneSelectedButton.style.color = "";
+            playerOneSelectedButton.style.borderColor = "";
+          }
+          button.style.backgroundColor = "green";
+          button.style.color = "white";
+          button.style.borderColor = "green";
+          playerOneSelectedButton = button;
+        } else {
+          button.style.backgroundColor = "";
+          button.style.color = "";
+          button.style.borderColor = "";
+          playerOneSelectedButton = null;
+        }
+      }
+      const playerOneChoice = playerOneSelectedButton?.classList[1];
+      const playerTwoChoice = playerTwoSelectedButton?.classList[1];
+
+      if (playerOneChoice && playerTwoChoice) {
+        const result = determineWinner(playerOneChoice, playerTwoChoice);
+
+        if (result === "playerOne") {
+          playerOneScore++;
+        } else if (result === "playerTwo") {
+          playerTwoScore++;
+        }
+
+        updateScores();
+      }
+      playerOneBoard.classList.toggle("clear");
+      playerOneBoard.classList.toggle("faded");
+      playerTwoBoard.classList.toggle("faded");
+      playerTwoBoard.classList.toggle("clear");
     });
   });
 
@@ -100,6 +195,11 @@ document.addEventListener("DOMContentLoaded", () => {
         ".board.player-one .name"
       );
       playerOneNameElement.textContent = playerOneInput.value;
+
+      playerOneBoard.classList.add("faded");
+      playerTwoBoard.classList.remove("faded");
+      disableButtons(playerOneBoard.querySelectorAll(".game-button"));
+      enableButtons(playerTwoBoard);
     }
   });
 
@@ -131,10 +231,28 @@ document.addEventListener("DOMContentLoaded", () => {
         ".board.player-two .name"
       );
       playerTwoNameElement.textContent = playerTwoInput.value;
+      playerTwoBoard.classList.add("faded");
+      playerOneBoard.classList.remove("faded");
+      disableButtons(playerTwoBoard.querySelectorAll(".game-button"));
+      enableButtons(playerOneBoard);
     }
   });
 
   resetButton.addEventListener("click", () => {
+    if (playerOneSelectedButton) {
+      playerOneSelectedButton.style.backgroundColor = "";
+      playerOneSelectedButton.style.color = "";
+      playerOneSelectedButton.style.borderColor = "";
+      playerOneSelectedButton = null;
+    }
+
+    if (playerTwoSelectedButton) {
+      playerTwoSelectedButton.style.backgroundColor = "";
+      playerTwoSelectedButton.style.color = "";
+      playerTwoSelectedButton.style.borderColor = "";
+      playerTwoSelectedButton = null;
+    }
+
     playerOneInput.style.display = "block";
     playerOneNextButton.style.display = "block";
     playerTwoInput.style.display = "none";

@@ -175,3 +175,12 @@ span {
 .row.player-two .next[disabled] {
   opacity: 0.5;
 }
+
+.faded {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.clear {
+  opacity: 1;
+}
